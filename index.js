@@ -1,10 +1,12 @@
 const index = require('express')()
+const cors = require('cors')
 const getForecast = require('./src/weatherController')
 const insert = require('./database/insertDB')
 
 const host = '127.0.0.1'
 const port = 7000
 
+index.use(cors())
 
 index.get('/get_weather', async (req, res) => {
     const forecast = await getForecast.getForecast(req.query.city)
